@@ -12,7 +12,7 @@ container.prepend(div);
 let position = 0;
 let movePosition =  div.clientWidth
 
-
+let selectedItem;
 
 let data = [
     {id: 1, src: 'assets/images/1.png'},
@@ -39,20 +39,26 @@ url.forEach((item,index) => {
         position = -(coords.left + movePosition * index);
         div.style.transform = `translateX(${position}px)`
         // console.log(scrollItem);
-        scrollItem.classList.add('active')
+        // scrollItem.classList.add('active')
+        highlight(scrollItem);
     })
     // console.log(scrollItem);
 
 })
 
 
-let itemSearch = document.querySelectorAll('.slider__item');
-itemSearch.forEach((item) => {
-    item.addEventListener('click', function () {
-        item.classList.remove('active')
+function highlight(item) {
+    if (selectedItem) {
+        selectedItem.classList.remove('active');
+    }
+    // console.log(Object.getPrototypeOf(item));
 
-    })
-})
+    selectedItem = item;
+    selectedItem.classList.add('active');
+}
+
+
+
 
 
 
